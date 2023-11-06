@@ -4,30 +4,23 @@
     {
         static void Main(string[] args)
         {
-            for(int i = 1; i < 100; i++)
-            {
-                Console.WriteLine(GenerateFizzBuzz(i));
-            }
+            Print();
         }
 
-        public static string GenerateFizzBuzz(int number)
+        public static void Print(int start = 1)
         {
-            var result = String.Empty;
+            FizzBuzz f = new FizzBuzz();
 
-            if (number % 3 == 0)
-            {
-                result += "Fizz";
-            }
-            if (number % 5 == 0)
-            {
-                result += "Buzz";
-            }
-            if(result.Length == 0)
-            {
-                result = number.ToString();
-            }
+            var lastValue = String.Join("", f.conditions.Select(x => x.Value).ToArray());
 
-            return result;
+            var currentValue = f.GenerateFizzBuzz(start);
+
+            while (currentValue != lastValue)
+            {
+                currentValue = f.GenerateFizzBuzz(start);
+                Console.WriteLine(currentValue);
+                start++;
+            }
         }
     }
 }
